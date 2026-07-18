@@ -1,0 +1,195 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * FocusForge — Obsidian design system.
+ * Dark-first, museum-grade. Purple-violet accent reserved for moments of meaning.
+ */
+
+@theme inline {
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-dim: var(--dim);
+  --color-rarity-common: oklch(0.78 0.02 240);
+  --color-rarity-uncommon: oklch(0.78 0.16 160);
+  --color-rarity-rare: oklch(0.75 0.18 230);
+  --color-rarity-epic: oklch(0.72 0.21 305);
+  --color-rarity-legendary: oklch(0.82 0.18 75);
+  --color-rarity-mythic: oklch(0.74 0.22 20);
+  --color-rarity-celestial: oklch(0.85 0.14 195);
+  --color-rarity-transcendent: oklch(0.78 0.22 340);
+}
+
+/* Dark obsidian is the only theme. Forced. */
+:root,
+.dark {
+  --radius: 1rem;
+  --background: oklch(0.16 0.005 270);
+  --foreground: oklch(0.985 0.002 255);
+  --surface: oklch(0.20 0.006 270);
+  --surface-2: oklch(0.24 0.008 270);
+  --dim: oklch(0.65 0.015 255);
+
+  --card: oklch(0.20 0.006 270);
+  --card-foreground: oklch(0.985 0.002 255);
+  --popover: oklch(0.20 0.006 270);
+  --popover-foreground: oklch(0.985 0.002 255);
+
+  --primary: oklch(0.72 0.21 305);
+  --primary-foreground: oklch(0.14 0.02 300);
+
+  --secondary: oklch(0.26 0.008 270);
+  --secondary-foreground: oklch(0.985 0.002 255);
+  --muted: oklch(0.24 0.008 270);
+  --muted-foreground: oklch(0.65 0.015 255);
+  --accent: oklch(0.26 0.008 270);
+  --accent-foreground: oklch(0.985 0.002 255);
+  --destructive: oklch(0.55 0.21 25);
+  --destructive-foreground: oklch(0.985 0.002 255);
+
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.72 0.21 305);
+}
+
+@layer base {
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  * { border-color: var(--color-border); }
+  body {
+    background:
+      radial-gradient(1200px 600px at 50% -200px, oklch(0.72 0.21 305 / 0.10), transparent 60%),
+      radial-gradient(800px 400px at 100% 100%, oklch(0.72 0.21 305 / 0.05), transparent 60%),
+      var(--color-background);
+    min-height: 100vh;
+  }
+}
+
+/* ---------- Utilities ---------- */
+
+@utility glass {
+  background: oklch(1 0 0 / 0.035);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid oklch(1 0 0 / 0.08);
+}
+
+@utility glass-strong {
+  background: oklch(0.20 0.006 270 / 0.78);
+  backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid oklch(1 0 0 / 0.10);
+}
+
+@utility text-dim {
+  color: var(--color-dim);
+}
+
+@utility eyebrow {
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-dim);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes spark {
+  0%   { transform: translate(0,0) scale(0); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translate(var(--tx, 0), var(--ty, -60px)) scale(1); opacity: 0; }
+}
+@keyframes unlock-rise {
+  0%   { transform: scale(0.4) translateY(40px); opacity: 0; filter: blur(8px); }
+  60%  { transform: scale(1.05) translateY(-8px); opacity: 1; filter: blur(0); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+@keyframes ring-sweep {
+  0% { stroke-dashoffset: var(--dash, 552); }
+  100% { stroke-dashoffset: var(--target, 0); }
+}
+
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-float-medium { animation: float-medium 4s ease-in-out infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.08), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+.animate-unlock-rise { animation: unlock-rise 1.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* Pedestal halo behind a rock */
+.pedestal {
+  position: relative;
+}
+.pedestal::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 60%;
+  height: 18px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, oklch(0 0 0 / 0.6), transparent 70%);
+  filter: blur(8px);
+  pointer-events: none;
+}
